@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Brand-Blaise</title>
+        <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+       />
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel='stylesheet' href='../css/ContactMe.css' style='text/css'/>
+        <script type="text/javascript" src="../js/ContactMe.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+      <body>
+      <nav id="head">
+        <div class="logo" id="text" onclick="func()">
+          <a href="../index.html" ><h2>Shimwa Blaise Pascal</h2></a>
+        </div>
+        <div class="log"id = "navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+            <a href="./AboutMe.html" class="button-up" >About Me</a>
+            <a href="./Portfolio.html" class="button-up">Portfolio</button></a>
+            <a href="./Skills.html" class="button-up">Skills</button></a>
+            <a href="./Blog.html" class="button-up">Blog</button></a>
+            <a href="./ContactMe.html" class="button-up" style="color: #0A79B8;">Contact Me</button></a>
+            <a href="./LogIn.html" class="button-up"><button class="button" type="submit" name="Sign up">Log In</button></a>
+       </div>
+       <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+   <div class="container">
+    <div class="mission">
+       <div class="job">Get in touch,</div>
+       <div class="company">or leave me a message and I'll get</br> back to you as soon as possible</div>        
+       <div class="job2">Phone</div> 
+       <div class="company"> +2507872111</div>
+            <div class="job2">Email</div>
+        <div class="company">bstwagir@mtu.edu</div>
+        
+        <div class="left">
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="https://github.com/bstwagir" class="fa fa-github"></a>
+                <a href="https://www.linkedin.com/in/shimwa-blaise-pascal-twagirayezu-080657107/" class="fa fa-linkedin"></a>
+                <a href="#" class="fa fa-instagram"></a>
+            </div>
+     </div>
+     
+     <div class="services">
+      <form action="" id="myForm">
+        <div class="">
+            <div class="nav">
+                <input class="input" type='name' id="lname" placeholder='Last Name' required></input>
+                <input class="input2" type='name' id="fname" placeholder='First Name' required></input>
+            </div>
+            <input class="input3" type='email' id="email" placeholder='Email' required></input>
+            <input class="input3" type='subject' id="subject" placeholder='Subject' required></input>
+            <input class="input4" type='message' id="message" placeholder='Message' required></input>
+            <div id="confirm" style ="color:rgb(8, 221, 8); font-size: 20px; margin-left: 5%; display:none"><span class="material-symbols-outlined">
+              check_circle
+              </span> Message Sent</div>
+         </div>
+         <button class="button-cv" type="submit" value="submit" onclick="Message()" >SEND</button>
+        </form>
+     </div>
+    </div>
+    <script>
+
+      var navLinks = document.getElementById('navLinks');
+      function showMenu() {
+        navLinks.style.right = '0'
+      }
+      function hideMenu() {
+        navLinks.style.right = '-200px'
+      }
+    
+    </script>
+
+</body>
+</html>
