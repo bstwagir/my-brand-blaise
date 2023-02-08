@@ -1,24 +1,26 @@
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Cabin', sans-serif;
+}
   body, html {
     height: 100%;
-    background-color: #6b4646;
+    background-color: white;
   }
   
-  header {
+  nav {
           display: flex;
           justify-content: space-between;
           width:100%;
-          background:#4D3333;
+          background:#ffffff;
           color: black;
           font-family: 'Cabin';
           position: fixed;
           top: 0;
-          border-bottom-left-radius: 5%;
-          border-bottom-right-radius: 5%;
           z-index: 9999;
+          box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
   
         }
   
@@ -34,13 +36,13 @@
           font-family: 'Cabin';
           font-size: 40px;
           font-weight: 600;
-          color: white;
+          color: black;
           padding-bottom: 1%;
         }
   h2 {
     font-weight: 400 ;
     font-size: 20px;
-    color:white;
+    color:black;
   } 
  
   #text:hover {
@@ -66,7 +68,7 @@
     height: 41px;
   }
   .button:hover {
-  background-color: #4D3333;
+  background-color: white;
   color:#0A79B8;
   }
   .button-up {
@@ -78,7 +80,7 @@
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    color:white;
+    color:black;
   }
   .button-up:hover {
   color: #0A79B8;
@@ -116,7 +118,7 @@
     font-weight:400;
     margin-top: 15px;
     font-family: 'Arial';
-    background-color: #6b4646;
+    background-color:;
     margin-left: 8%;
     margin-right: 8%;
     margin-bottom: 20px;
@@ -135,17 +137,19 @@ display: flex;
   }
   .services{
     width: 70%;
-    background-color:rgba(217, 217, 217,.1);
+    background-color:rgba(217, 217, 217,.5);
     border-radius: 2%;
     display: flex;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5)
   }
   .services2{
     width: 15%;
-    background-color:rgba(217, 217, 217,.1);
+    background-color:rgba(217, 217, 217,.5);
     border-radius: 2%;
     display: flex;
     float:right;
     margin-left: 2%;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5)
   }
   .exp {
     position: relative;
@@ -163,7 +167,7 @@ display: flex;
     color:#0A79B8;
     font-size: 70px;
     font-weight: 300;
-    background-color: #6b4646;
+    background-color: white;
     text-align: center;
     padding-top: 8%;
   }
@@ -198,6 +202,7 @@ display: flex;
 }   
   .time {
     color:rgb(136, 131, 131);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5)
   }
   .job {
     font-size: 18px;
@@ -208,7 +213,7 @@ display: flex;
   .job2 {
     font-size: 18px;
     font-weight: 500;
-    color: white ;
+    color: black;
     line-height: 150%;
     padding: 2%;
   }
@@ -333,9 +338,12 @@ display: flex;
     width: 100%;
   
   }
+  #head .fa{
+    display: none;
+  } 
   
   
-  @media only screen and (max-width: 375px) {
+  @media (max-width: 700px) {
     .mission{
      margin-top: 0 auto;
       width:100%;
@@ -345,6 +353,7 @@ display: flex;
       margin: 0 auto;
       width:100%;
       text-align: center;
+      box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5)
   
   }
   header {
@@ -358,6 +367,13 @@ display: flex;
     position: fixed;
     top: 0;
     
+  }
+  .hi{
+    padding-top: -20%;
+    margin-top: -20%;
+  }
+  .job2 {
+    text-align: left;
   }
   .footer {
   display: none;
@@ -399,7 +415,6 @@ display: flex;
                 width: 100%;
   
               }
-            }
             .logo {
               /* margin:1em auto; */
               font-size:1.5em;
@@ -414,4 +429,44 @@ display: flex;
             }
             #text:hover {
               cursor:pointer;
+            }
+            .pic{
+              display: block;
+              margin-bottom: 5%;
+              padding: 5%;
+            }
+            .services2{
+              float:none;
+              width: 100%;
+            }
+            #head .button-up{
+              display: block;
+              padding-right: 10px;
+              text-align: left;   
+            }
+           .log {
+            display: block;
+              position: absolute;
+              background-color: rgb(204, 183, 183); 
+              height: 100vh;
+              width: 200px;
+              cursor: pointer;
+              top: 0;
+              right: -200px;
+              margin-top: 0;
+              text-align: left;
+              z-index: 2;
+              margin-right: -6.22%;
+  
+            }
+             #head .fa{
+              display: block;
+              margin: 20px;
+              font-size: 22px;
+              cursor:  pointer;
+             }
+             .logo{
+              padding-bottom: 20px;
+              color: black;
+             }
             }

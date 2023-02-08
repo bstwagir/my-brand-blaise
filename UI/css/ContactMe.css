@@ -1,24 +1,26 @@
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Cabin', sans-serif;
+}
   body, html {
     height: 100%;
-    background-color: #6b4646;
+    background-color: white;
   }
   
-  header {
+  nav {
           display: flex;
           justify-content: space-between;
           width:100%;
-          background:#4D3333;
+          background:#ffffff;
           color: black;
           font-family: 'Cabin';
           position: fixed;
           top: 0;
-          border-bottom-left-radius: 5%;
-          border-bottom-right-radius: 5%;
           z-index: 9999;
+          box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
   
         }
   
@@ -34,13 +36,12 @@
           font-family: 'Cabin';
           font-size: 40px;
           font-weight: 600;
-          color: white;
-          padding-bottom: 1%;
+          color: black;
         }
   h2 {
     font-weight: 400 ;
     font-size: 20px;
-    color:white;
+    color:black;
   } 
   h2:hover {
     color: #0A79B8;
@@ -69,7 +70,7 @@
     height: 41px;
   }
   .button:hover {
-  background-color: #4D3333;
+  background-color: white;
   color:#0A79B8;
   }
   .button-up {
@@ -81,7 +82,8 @@
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    color:white;
+    color:black;
+    font-family: 'Cabin';
   }
   .button-up:hover {
   color: #0A79B8;
@@ -119,7 +121,7 @@
     font-weight:400;
     margin-top: 15px;
     font-family: 'Arial';
-    background-color: #6b4646;
+    background-color: white;
     display: flex;
     justify-content: space-between;
   }
@@ -143,7 +145,8 @@
     margin-top: 7%;
     align-items: center;
     justify-content: center;
-    justify-items: center 
+    justify-items: center;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5)  
   }
   .exp {
     position: relative;
@@ -223,7 +226,7 @@
     font-weight: 400;
     text-align: left;
     margin-left: 12%;
-    color: white;
+    color: black;
   }
   .nav {
     display: flex;
@@ -241,7 +244,8 @@
     height: 30px;
     margin-top: -2%;
     padding:5%;
-    color: white;
+    font-size: 15px;
+    color: black;
   }
   .input2{
     background-color: rgba(217, 217, 217,.1);
@@ -251,19 +255,9 @@
     height: 30px;
     margin-top: -2%;
     padding:5%;
-    color: white;
-    margin-left: 10%;
-  }
-  .input2{
-    background-color: rgba(217, 217, 217,.1);
-    border: none;
-    border-bottom:black 1px solid;
-    width: 100%;
-    height: 30px;
-    margin-top: -2%;
-    padding:5%;
-    color: white;
-    margin-left: 10%;
+    color:;
+    margin-left: 12%;
+    font-size: 15px;
   }
   .input3{
     background-color: rgba(217, 217, 217,.1);
@@ -274,8 +268,9 @@
     margin-top: -2%;
     margin-bottom: 5% ;
     padding:5%;
-    color: white;
+    color: black;
     margin-left:5%;
+    font-size: 15px;
   }
   .input4{
     background-color: rgba(217, 217, 217,.1);
@@ -287,11 +282,12 @@
     margin-bottom: 5% ;
     padding:5%;
     padding-bottom: 10%;
-    color: white;
+    color: black;
     margin-left:5%;
+    font-size: 15px;
   }
   ::placeholder{
-    color: white;
+    color: black;
   }
   .button1 {
     border: none;
@@ -399,6 +395,10 @@
     width: 100%;
   
   }
+  #head .fa{
+    display: none;
+  }
+  
   
   
   @media only screen and (max-width: 375px) {
@@ -481,3 +481,99 @@
             #text:hover {
               cursor:pointer;
             }
+            #head .fa{
+              display: none;
+            }
+            
+
+            @media (max-width: 900px) {
+            #head .button-up{
+              display: block;
+              padding-right: 10px;
+              text-align: left;   
+            }
+           .log {
+            display: block;
+              position: absolute;
+              background-color: rgb(204, 183, 183); 
+              height: 100vh;
+              width: 200px;
+              cursor: pointer;
+              top: 0;
+              right: -200px;
+              margin-top: 0;
+              text-align: left;
+              z-index: 2;
+              margin-right: -5.22%;
+  
+            }
+             #head .fa{
+              display: block;
+              margin: 20px;
+              font-size: 22px;
+              cursor:  pointer;
+             }
+             .logo{
+              padding-bottom: 20px;
+              color: black;
+             }
+  
+             .mission{
+              margin-top: 50px;
+              float: none;
+              text-align: center;
+              width: 90%;
+  
+             }
+             .container{
+              display: block;
+              margin: 0 auto;
+              background-color:white;
+             }
+             .exp {
+              font-size: 70px;
+              display: flex;
+              justify-content: center;
+              box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+             }
+             .job{
+              font-size: 35px;
+              width: 100%;
+             }
+             .job2{
+              font-size: 30px;
+              width: 100%;
+             }
+             .company {
+              font-size: 20px;
+              width: 100%;
+              
+             }
+             .nav {
+              justify-content: space-between;
+              justify-content: center;
+              align-items: center;
+          }
+          .services{
+            float: none;
+            padding-top: 2%;
+            text-align: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            box-shadow: none;
+            width: 100%;
+            height: 200%;
+            box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5)
+  
+          }
+          .line{
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+          }
+          .left{
+            margin-top: -10%;
+          }
+  
+          }

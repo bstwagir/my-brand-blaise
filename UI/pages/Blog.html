@@ -4,15 +4,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Brand-Blaise</title>
         <link rel='stylesheet' href='../css/Blog.css' style='text/css'/>
-        <script type="text/javascript" src="js\Portfolio.js"></script>
+        <script type="text/javascript" src="../js/Blog.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       </head>
       <body>
-      <header id="head">
+      <nav id="head">
         <div class="logo">
             <a href="../index.html" ><h2>Shimwa Blaise Pascal</h2></a> 
         </div>
-        <div class="log">
+        <div class="log" id = "navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
             <a href="./AboutMe.html" class="button-up" >About Me</a>
             <a href="./Portfolio.html" class="button-up" >Portfolio</button></a>
             <a href="./Skills.html" class="button-up">Skills</button></a>
@@ -20,37 +22,28 @@
             <a href="./ContactMe.html" class="button-up">Contact Me</button></a>
             <a href="./LogIn.html" class="button-up"><button class="button" type="submit" name="Sign up">Log In</button></a>
        </div>
-     </header>
+       <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
    <div class="container">
     <div class="hi"><u>Blog</u></div>
     <div class="job"><u>Latest Articles</u></div>
-        <div class="services">
-            <div class="job2"> Design applications according to client’s specification
-                 using Figma.</br>
-Develop Mobile Applications Front end using React Native.</br>
-Work diligently in teams to timely assess progress on ongoing projects.</br>
-Collaborate closely with project managers to deliver required tasks on schedule.</div>
-
-        </div><div class="job3"><u>Comment</u></div><div class="job3"><u>Like</u></div>
-        <div class="services">
-            <div class="job2"> Design applications according to client’s specification
-                 using Figma.</br>
-Develop Mobile Applications Front end using React Native.</br>
-Work diligently in teams to timely assess progress on ongoing projects.</br>
-Collaborate closely with project managers to deliver required tasks on schedule.</div>
-
-        </div><div class="job4">Post your Own</div><div class="job3"><u>Comment</u></div><div class="job3"><u>Like</u></div>
-  
-        <div class="services">
-          <div class="job2"> Design applications according to client’s specification
-               using Figma.</br>
-Develop Mobile Applications Front end using React Native.</br>
-Work diligently in teams to timely assess progress on ongoing projects.</br>
-Collaborate closely with project managers to deliver required tasks on schedule.</div>
-<div class="job4">Post your Own</div><div class="job3"><u>Comment</u></div><div class="job3"><u>Like</u></div>
+        <div id="articles"> 
+          
       </div>
+      <!--<div class="job4"><a href="./LogIn.html" style="color:white;"> Post your Own</a></div>-->
 
-        <body>
+<script>
+
+    var navLinks = document.getElementById('navLinks');
+    function showMenu() {
+      navLinks.style.right = '0'
+    }
+    function hideMenu() {
+      navLinks.style.right = '-200px'
+    }
+  
+  </script>
+  <script src="../js/Blog.js"></script>
 
 
 </body>

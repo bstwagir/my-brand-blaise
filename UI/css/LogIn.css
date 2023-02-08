@@ -1,24 +1,26 @@
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Cabin', sans-serif;
+}
   body, html {
     height: 100%;
-    background-color: #6b4646;
+    background-color: white;
   }
   
-  header {
+  nav {
           display: flex;
           justify-content: space-between;
           width:100%;
-          background:#4D3333;
+          background:#ffffff;
           color: black;
           font-family: 'Cabin';
           position: fixed;
           top: 0;
-          border-bottom-left-radius: 5%;
-          border-bottom-right-radius: 5%;
           z-index: 9999;
+          box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
   
         }
   
@@ -34,13 +36,14 @@
           font-family: 'Cabin';
           font-size: 40px;
           font-weight: 600;
-          color: white;
+          color: black;
           padding-bottom: 1%;
+          padding-top: 5%;
         }
   h2 {
     font-weight: 400 ;
     font-size: 20px;
-    color:white;
+    color:black;
   } 
   h2:hover {
     color: #0A79B8;
@@ -55,6 +58,7 @@
           float: right;
           display:flex;
           flex-direction: row;
+          font-family: 'Cabin';
         }
   .button {
     background-color:#0A79B8;
@@ -69,7 +73,7 @@
     height: 41px;
   }
   .button:hover {
-  background-color: #4D3333;
+  background-color: white;
   color:#0A79B8;
   }
   .button-up {
@@ -81,7 +85,8 @@
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    color:white;
+    color:black;
+    font-family: 'Cabin';
   }
   .button-up:hover {
   color: #0A79B8;
@@ -119,7 +124,7 @@
     font-weight:400;
     margin-top: 15px;
     font-family: 'Arial';
-    background-color:#6b4646;
+    background-color:white;
     align-items: center;
     justify-content: center;
   }
@@ -142,7 +147,9 @@
     border-radius: 5%;
     align-items: center;
     justify-content: center;
-    justify-items: center 
+    justify-items: center;
+    background-color: rgba(217, 217, 217, 0.226);
+    box-shadow: 1px 3px 1px 1px rgba(0,0,0,0.5) ;
   }
   .exp {
     position: relative;
@@ -219,7 +226,7 @@
     padding-right: 15%;
   }
  .email{
-    color: white;
+    color: black;
 
   }
   .input{
@@ -229,6 +236,7 @@
     width: 70%;
     height: 30px;
     margin-top: -2%;
+    padding-left: 10px;
 
   }
   .nav2 {
@@ -240,7 +248,7 @@
     padding-right: 15%;
   }
   .account{
-    color:white;
+    color:black;
   }
   .account2{
     color:#0A79B8;
@@ -352,74 +360,10 @@
     width: 100%;
   
   }
-  
-  
-  @media only screen and (max-width: 375px) {
-    .mission{
-     margin-top: 0 auto;
-      width:100%;
-      text-align: center;
-    }
-    .services{
-      margin: 0 auto;
-      width:100%;
-      text-align: center;
-  
+  #head .fa{
+    display: none;
   }
-  header {
-    justify-content: space-between;
-    width:100%;
-    border-top: 8px solid;
-    border-color: black;
-    background:white;
-    color: #0c0c0c;
-    font-family: 'Arial';
-    position: fixed;
-    top: 0;
-    
-  }
-  .footer {
-  display: none;
-  }
-  .container{
-    /*display: inline-block;*/
-    margin-top: 15%;
-    /*justify-content: space-between;*/
-    font-size: 16px;
-    font-weight:250;
-    margin:0 auto;
-    padding-top: 10em;
-  }
-  .logo {
-          /* margin:1em auto; */
-          color:rgb(0, 0, 0);
-          font-size:1.0em;
-          justify-self: center;
-          align-self:center;
-          font-weight:900;
-  
-        }
-        .log {
-  
-                color:rgb(10, 10, 10);
-                list-style: none;
-                margin-right: auto;
-                width: 60%
-              }
-              .block{
-                background-color:rgba(0,200,255,1);
-                border: none;
-                cursor: pointer;
-                text-align: center;
-                text-decoration: none;
-                font-size: 15px;
-                display: block;
-                padding: 14px 28px;
-                width: 100%;
-  
-              }
-            }
-            .logo {
+ .logo {
               /* margin:1em auto; */
               font-size:1.5em;
               justify-self: center;
@@ -433,4 +377,143 @@
             }
             #text:hover {
               cursor:pointer;
+            }
+            @media (max-width: 900px) {
+              #head .button-up{
+                display: block;
+                padding-right: 10px;
+                text-align: left;   
+              }
+             .log {
+              display: block;
+                position: absolute;
+                background-color: rgb(204, 183, 183); 
+                height: 100vh;
+                width: 200px;
+                cursor: pointer;
+                top: 0;
+                right: -200px;
+                margin-top: 0;
+                text-align: left;
+                z-index: 2;
+                margin-right: -5.22%;
+    
+              }
+               #head .fa{
+                display: block;
+                margin: 20px;
+                font-size: 22px;
+                cursor:  pointer;
+               }
+               .logo{
+                padding-bottom: 20px;
+                color: black;
+               }
+    
+               .mission{
+                margin-top: 50px;
+                float: none;
+                text-align: center;
+                width: 90%;
+    
+               }
+               .container{
+                display: block;
+                margin: 0 auto;
+                background-color:white;
+               }
+               .exp {
+                font-size: 70px;
+                display: flex;
+                justify-content: center;
+                box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+               }
+               .job{
+                font-size: 35px;
+                width: 100%;
+               }
+               .job2{
+                font-size: 30px;
+                width: 100%;
+               }
+               .company {
+                font-size: 20px;
+                width: 100%;
+                
+               }
+               .nav {
+                justify-content: space-between;
+                justify-content: center;
+                align-items: center;
+            }
+            .services{
+              float: none;
+              padding-top: 2%;
+              text-align: left;
+              justify-content: center;
+              color: white;
+              border: none;
+              box-shadow: none;
+              width: 80%;
+              height: 100%;
+              box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+              padding-left: 10px;
+    
+            }
+            .line{
+              justify-content: center;
+              align-items: center;
+              width: 70%;
+            }
+            .left{
+              margin-top: -10%;
+            }
+            .hi {
+              color:#0A79B8;
+              font-size: 40px;
+              font-weight: 400;
+              position:relative;
+              text-align: center;
+              margin-top: 20%;
+          
+            }
+            .nav2 {
+              display: flex;
+              flex-direction: row;
+              margin-top: 2%;
+              margin-left: 10%;
+              padding-left: 10% ;
+              padding-right: 10%;
+            }
+            .account{
+              color:black;
+            }
+            .account2{
+              color:#0A79B8;
+              padding-left: 2%;
+            }
+            .nav {
+              display: flex;
+              flex-direction: row;
+              margin: 5%;
+              margin-top:;
+              justify-content: space-between;
+              padding-left: 15% ;
+              padding-right: 15%;
+              text-align: left;
+            }
+           .email{
+              color: black;
+          
+            }
+            .input{
+              background-color: rgba(217, 217, 217, 0.226);
+              border:#0A79B8 1px solid;
+              border-radius: 5%;
+              width: 70%;
+              height: 30px;
+              margin-top: -2%;
+              padding-left: 10px;
+          
+            }
             }
