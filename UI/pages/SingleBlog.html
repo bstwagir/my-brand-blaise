@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Brand-Blaise</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel='stylesheet' href='../css/SinglePost.css' style='text/css'/>
+        <script type="text/javascript" src="../js/SingleBlog.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+      <body>
+      <nav id="head">
+        <div class="logo" id="text" onclick="func()">
+          
+          <a href="../index.html" ><h2>Shimwa Blaise Pascal</h2></a>
+        </div>
+        <div class="log" id = "navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+            <a href="./AboutMe.html" class="button-up" >About Me</a>
+            <a href="./Portfolio.html" class="button-up">Portfolio</button></a>
+            <a href="./Skills.html" class="button-up">Skills</button></a>
+            <a href="./Blog.html" class="button-up">Blog</button></a>
+            <a href="./ContactMe.html" class="button-up">Contact Me</button></a>
+            <a href="./LogIn.html" class="button-up" style="color: #0A79B8;">Log In</a>
+       </div>
+       <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <div id="singlepost" >
+        <div class="container singlepost_container">
+            <h1 style="font-weight: 800; margin-bottom: 5%; color:#0A79B8">Computer's are the way of the future in the ever developing world. But mostly Let's focus on us</h1>
+            <div class="singlepost_image">
+                <img src="../assets/photo-1610563166150-b34df4f3bcd6-768x575.jpeg" alt="">
+
+            </div>
+            <div>
+             <p>
+                was recently learning about the querySelectorAll() method in JavaScript and the fact that it returns back a NodeList object containing all the elements that match a particular CSS selector.
+
+                Now the confusion I have is that if querySelectorAll() is meant to only match element nodes, why doesn't it return back an HTMLCollection instead, like getElementsByClassName() and getElementsByTagName() do?
+                
+                What's the point of querySelectorAll() returning back a NodeList instance?
+                
+                Is it the case that querySelectorAll() can be used to select non-element nodes as well?
+            </p>
+            <p>
+              was recently learning about the querySelectorAll() method in JavaScript and the fact that it returns back a NodeList object containing all the elements that match a particular CSS selector.
+
+              Now the confusion I have is that if querySelectorAll() is meant to only match element nodes, why doesn't it return back an HTMLCollection instead, like getElementsByClassName() and getElementsByTagName() do?
+              
+              What's the point of querySelectorAll() returning back a NodeList instance?
+              
+              Is it the case that querySelectorAll() can be used to select non-element nodes as well?
+          </p>
+          <p>
+            was recently learning about the querySelectorAll() method in JavaScript and the fact that it returns back a NodeList object containing all the elements that match a particular CSS selector.
+
+            Now the confusion I have is that if querySelectorAll() is meant to only match element nodes, why doesn't it return back an HTMLCollection instead, like getElementsByClassName() and getElementsByTagName() do?
+            
+            What's the point of querySelectorAll() returning back a NodeList instance?
+            
+            Is it the case that querySelectorAll() can be used to select non-element nodes as well?
+        </p>
+            </div>
+
+        
+        <div style="margin-top: 10%; font-weight: 500; color: blue;"> Leave a Comment</div>
+        <form>
+          <div class="heart__icon center__display">
+              <div class="like-btn" style= "color:blue"><span class="material-symbols-outlined">
+                thumb_up
+                </span></div>
+          </div>
+          <div class="form__info center__display">
+              
+              <input type="text" name="comment" id="comment" placeholder="Add a short comment here">
+          </div>
+          <button type="submit" class="submit__btn">
+              Submit
+          </button>
+      </form>
+      <div class="likes__count">
+          <small class="count">0</small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="comments__container center__display">
+        
+
+
+      </div>
+
+
+
+      <script>
+
+        var navLinks = document.getElementById('navLinks');
+        function showMenu() {
+          navLinks.style.right = '0'
+        }
+        function hideMenu() {
+          navLinks.style.right = '-200px'
+        }
+      
+      </script>
+
+</body>
+  
+ </html>
