@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { signupSchema } = require('../helpers/validateSchema');
+const { signupSchema, authSchema } = require('../helpers/validateSchema');
 
 //SIGNUP
 
@@ -46,7 +46,7 @@ router.post("/signup", async (req, res) => {
     const user = await newUser.save();
     res.status(200).json("User successfully created");
   } catch (err) {
-    if (err.isJoi == true){ err.status = 422; res.json(err.message)}
+    if (err.isJoi == true){ res.status = 422; res.json(err.message)}
     else{
       res.status(500).json(err);
     }
@@ -92,6 +92,9 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+
+    const result = await authSchema.validateAsync(req.body);
+
     const user = await User.findOne({ email: req.body.email });
     !user && res.status(400).json("Wrong credentials!");
 
@@ -103,10 +106,13 @@ router.post("/login", async (req, res) => {
     };
     const accessToken = generateAccessToken(user);
     const { password, ...others } = user._doc;
-    res.status(200).json({others, accessToken,});
+    res.status(200).json({others, accessToken});
   }catch (err) {
-    res.status(500).json(err);
+    if (err.isJoi == true){ res.status = 422; res.json(err.message)}
+    else{
+      res.status(500).json(err);
   }
+}
 });
 
 module.exports = router;

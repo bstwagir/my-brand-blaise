@@ -39,7 +39,7 @@ const path = require("path");
  *         content:
  *           type: string
  *           description: The post content
- *         category:
+ *         categories:
  *           type: string
  *           description: The post category
  *         image:
@@ -133,7 +133,7 @@ if (req.user.isAdmin) {
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
   } catch (err) {
-    if (err.isJoi == true){ err.status = 422; res.json(err.message)}
+    if (err.isJoi == true){ res.status = 422; res.json(err.message)}
   }}else {
     res.status(500).json("Access Denied");
   }
@@ -249,12 +249,12 @@ router.delete("/:id", verify, async (req, res) => {
  *     summary: Get the post by id
  *     tags: [Posts]
  *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: The post id
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The post id
  *     responses:
  *       200:
  *         description: The post description by id
@@ -266,7 +266,8 @@ router.delete("/:id", verify, async (req, res) => {
  *         description: The post was not found
  */
 
-//GET POST
+//GET POST A SINGLE POST
+
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -322,9 +323,58 @@ router.get("/", async (req, res) => {
 
 
 //TOOGLE LIKE
-router.post("/:id/toogle_like", verify, async (req, res) => {
+
+/**
+ * @swagger
+ * components:
+ *    
+ *   schemas:
+ *     Like:
+ *       type: object
+ *       required:
+ *         - postId
+ *         - userId
+    
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the like
+ *         postId:
+ *           type: string
+ *           description: The post id
+ *         userId:
+ *           type: string
+ *           description: The creator id
+ */
+
+
+
+/**
+ * @swagger
+ * /server/posts/{postId}/toogle_like:
+ *   post:
+ *     summary: toogles a like for a post by id 
+ *     tags: [Likes]
+ *     parameters:
+ *      - in: path
+ *        name: postId
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The post id
+ *     responses:
+ *       200:
+ *         description: like a post by its id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Like'
+ */
+router.post("/:postId/toogle_like", verify, async (req, res) => {
   
-    let postId=req.params.id;
+    let postId=req.params.postId;
     if(!mongoose.Types.ObjectId.isValid(postId)){
       return res.status(400).send({
           message:'Invalid blog id',

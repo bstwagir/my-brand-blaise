@@ -7,11 +7,20 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const commentRoute = require("./routes/comments");
-const contactRoute = require("./routes/contactQuery");
+const contactRoute = require("./routes/contactQueries");
 const multer = require("multer");
 const path = require("path");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
+let bodyParser = require('body-parser')
+
+
+//parse application/json and look for raw text                                        
+app.use(bodyParser.json());                                     
+app.use(bodyParser.urlencoded({extended: true}));               
+app.use(bodyParser.text());                                    
+app.use(bodyParser.json({ type: 'application/json'}));  
+
 
 dotenv.config();
 
@@ -71,7 +80,7 @@ mongoose
   app.use("/server/auth",authRoute);
   app.use("/server/users",userRoute);
   app.use("/server/posts",postRoute);
-  app.use("/server/contactQuery",contactRoute);
+  app.use("/server/contactQueries",contactRoute);
   app.use("/server/posts",commentRoute);
 
 

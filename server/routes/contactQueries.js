@@ -63,7 +63,7 @@ const verify = (req, res, next) => {
 
 /**
  * @swagger
- * /server/contactQuery:
+ * /server/contactQueries:
  *   post:
  *     summary: Create a new contactQuery
  *     tags: [ContactQueries]
@@ -75,7 +75,7 @@ const verify = (req, res, next) => {
  *             $ref: '#/components/schemas/ContactQuery'
  *     responses:
  *       200:
- *         description: The post was successfully created
+ *         description: The contactQuery was successfully created
  *         content:
  *           application/json:
  *             schema:
@@ -99,7 +99,7 @@ router.post("/", async (req, res) => {
 
 /**
  * @swagger
- * server/contactQuery/{id}:
+ * server/contactQueries/{id}:
  *   delete:
  *     summary: Remove the contactQuery by id
  *     tags: [ContactQueries]
@@ -142,7 +142,7 @@ router.delete("/:id", verify, async (req, res) => {
 
 /**
  * @swagger
- * /server/contactQuery:
+ * /server/contactQueries:
  *   get:
  *     summary: Returns the list of all the messages
  *     tags: [ContactQueries]

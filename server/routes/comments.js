@@ -23,9 +23,10 @@ const verify = (req, res, next) => {
     }
   };
 
- 
 
-  /**
+
+
+/**
  * @swagger
  * components:
  *    
@@ -33,60 +34,35 @@ const verify = (req, res, next) => {
  *     Comment:
  *       type: object
  *       required:
- *         - postId
  *         - comment
- *
- *          
  *       properties:
- *         postId:
- *           type: string
- *           description: The auto-generated id of the post
- *         comment:
- *           type: string
- *           description: The subject of the message
- *       example:         
- *         postId: 6672449
- *         comment: wonderful
- *
- */
-
-
-   // POST A COMMENT
-
-/**
- * @swagger
- * components:
- *    
- *   schemas:
- *     Post:
- *       type: object
- *       required:
- *         - comment
- *         - postId
-     
- *       properties:
- *         postId:
- *           type: string
- *           description: The id of the post that the user wants to comment on
  *         comment:
  *           type: string
  *           description: The comment
  * 
  *       example:         
- *         postId: 66889479930
- *         postId: Wonderful
+ *         comment: Wonderful
  *
  */
 
 
 
+   // POST A COMMENT
+
 
 /**
  * @swagger
- * /server/:postId/comments/:
+ * /server/posts/{postId}/comments/:
  *   post:
  *     summary: Share a comment
  *     tags: [Comments]
+ *     parameters:
+ *      - in: path
+ *        name: postId
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The post id
  *     requestBody:
  *       required: true
  *       content:
@@ -95,11 +71,11 @@ const verify = (req, res, next) => {
  *             $ref: '#/components/schemas/Comment'
  *     responses:
  *       200:
- *         description: The post was successfully created
+ *         description: The comment was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Post'
+ *               $ref: '#/components/schemas/Comment'
  *       500:
  *         description: Some server error
  */
@@ -156,6 +132,45 @@ let postId=req.params.postId;
             }
     })
 })
+
+   // DELETE A COMMENT
+ 
+/**
+ * @swagger
+ * /server/posts/{postId}/comments/{id}:
+ *   delete:
+ *     summary: Delete a comment
+ *     tags: [Comments]
+ *     parameters:
+ *      - in: path
+ *        name: postId
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The post id
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The comment id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Comment'
+ *     responses:
+ *       200:
+ *         description: The comment was successfully deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
+ *       500:
+ *         description: Some server error
+ */
+
 
 router.delete('/:postId/comments/:id', verify, async (req, res) => {
 
