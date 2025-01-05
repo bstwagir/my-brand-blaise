@@ -1,5 +1,19 @@
 
-let userData = JSON.parse(localStorage.getItem('signupData')),
+var myHeaders = new Headers();
+myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+myHeaders.append("Content-Type", "application/json");
+
+var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:5000/server/users", requestOptions)
+  .then(response => response.text())
+  .then(result => {console.log(result), localStorage.setItem('signupData', result)})
+  .catch(error => console.log('error', error));
+
+      let userData = JSON.parse(localStorage.getItem('signupData')),
       userDataCount = document.querySelector('#userDataCount');
 
       userDataCount.textContent = userData ? userData.length : 0;
@@ -13,12 +27,22 @@ let userData = JSON.parse(localStorage.getItem('signupData')),
       let blogData = JSON.parse(localStorage.getItem('blogData')),
       blogDataCount = document.querySelector('#blogDataCount');
 
+
+      Logout=()=>{
+        localStorage.removeItem('current_user')
+      }
+
       blogDataCount.textContent = blogData ? blogData.length : 0;
 // Executes when document is loaded
 document.addEventListener("DOMContentLoaded", (ev) => {
     // Recent Orders Data
     document.getElementById("recent-orders--table").appendChild(buildTableBody());
+    document.querySelector(".material-icons-sharp").addEventListener("click",
+    ()=>{localStorage.removeItem("current_user")})
   
+    document.querySelector('.recent-updates').innerHTML = JSON.parse(localStorage.getItem("current_data")).others.name
+    var namee = JSON.parse(localStorage.getItem("current_data")).others.name
+    console.log(namee);
     // Updates Data
     document
       .getElementsByClassName("recent-updates")
@@ -112,25 +136,29 @@ document.addEventListener("DOMContentLoaded", (ev) => {
   const sideMenu = document.querySelector("aside");
   const menuBtn = document.querySelector("#menu-btn");
   const closeBtn = document.querySelector("#close-btn");
-  const themeToggler = document.querySelector(".theme-toggler");
+ // const themeToggler = document.querySelector(".theme-toggler");
   
   // Show Sidebar
-  menuBtn.addEventListener("click", () => {
+   menuBtn.addEventListener("click", () => {
     sideMenu.style.display = "block";
   });
   
-  // Hide Sidebar
-  closeBtn.addEventListener("click", () => {
-    sideMenu.style.display = "none";
+// Hide Sidebar
+ closeBtn.addEventListener("click", () => {
+  sideMenu.style.display = "none";
   });
   
   // Change Theme
-  themeToggler.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme-variables");
+  //themeToggler.addEventListener("click", () => {
+  //  document.body.classList.toggle("dark-theme-variables");
   
-    themeToggler.querySelector("span:nth-child(1)").classList.toggle("active");
-    themeToggler.querySelector("span:nth-child(2)").classList.toggle("active");
-  });
+   // themeToggler.querySelector("span:nth-child(1)").classList.toggle("active");
+  //  themeToggler.querySelector("span:nth-child(2)").classList.toggle("active");
+ // });
+
+Logout=()=>{
+  localStorage.removeItem('current_user')
+}
 
   /**let userData = JSON.parse(localStorage.getItem('signupData')),
       userDataCount = document.querySelector('#userDataCount');

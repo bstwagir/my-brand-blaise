@@ -1,4 +1,10 @@
   
+   var myHeaders = new Headers();
+   myHeaders.append("Content-Type", "application/json");
+   myHeaders.append("Access-Control-Allow-Origin", "*")
+
+
+  
   function Message(){
 
   const form = document.getElementById("myForm");
@@ -7,24 +13,48 @@
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         const formValues = {
+            name: form.name.value,
             lname: form.lname.value,
-            fname: form.fname.value,
             email: form.email.value,
             subject: form.subject.value,
             message: form.message.value
         };
-        if(formValues.lname && formValues.email && formValues.message){
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Access-Control-Allow-Origin", "*")
+     
+      
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: JSON.stringify(formValues),
+          redirect: "follow",
+      };
+      const sendMsg = () => {
+        console.log(formValues);
+      fetch("http://localhost:5000/server/contactQueries", requestOptions)
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+      }
+        if(formValues.name && formValues.email && formValues.message){
             contactData.push(formValues);
             if (contactData.length > 0) {
               localStorage.setItem(storageKey, JSON.stringify(contactData));
-              document.getElementById('confirm').style.display = 'block'
+              document.getElementById('confirm').style.display = 'block';
+              sendMsg()
               
             
             }} 
-        form.fname.value = "";
+        form.name.value = "";
         form.lname.value = "";
         form.email.value = "";
         form.subject.value = "";
         form.message.value = "";
     });
+
+
 }
+
+

@@ -1,4 +1,19 @@
+
+
+var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:5000/server/posts", requestOptions)
+    .then(response => response.text())
+    .then(result => {console.log(result), localStorage.setItem('blogData', result)})
+    .catch(error => console.log('error', error));
+
+
 // selecting the elements from the DOM
+
+
 let data = localStorage.getItem('blogData'),
     form = document.querySelector('form'),
     btnSubmit = document.querySelector('[type="submit"]'),
@@ -14,6 +29,9 @@ let data = localStorage.getItem('blogData'),
     dataCount = document.querySelector('#dataCount'),
     search = document.querySelector('#search'),
     userCount = document.getElementsByClassName("user-count");
+    const menuBtn = document.querySelector("#menu-btn");
+    const closeBtn = document.querySelector("#close-btn");
+    const sideMenu = document.querySelector("aside");
     let  blogUpdate=[]
 
 const saveProduct = () => {
@@ -63,7 +81,7 @@ fetchProducts = () => {
                 <td>${++i}</td>
                 <td>${item.title}</td>
                 <td>${item.content}</td>
-                <td>${item.category.toUpperCase()}</td>
+                <td>${item.categories.toUpperCase()}</td>
                 <td><img style="width:75px;height=75px" src="${item.image}"></td>
                 <td style="width: 115px;">
                 <button type="button" id="btnEditProduct" onclick="currentUpdate(${--i});">Edit</button>
@@ -87,13 +105,23 @@ currentUpdate = i => {
     console.log(data[i]);
     title = data[i].title
     content = data[i].content;
-    category = data[i].category;
+    categories = data[i].categories;
     image = data[i].image;
-    
-    blogUpdate.push({title, content, category, image});
+    _id = data[i]._id;
+    blogUpdate.push({title, content, categories, image, _id});
+    console.log(blogUpdate)
     localStorage.setItem('currentData', JSON.stringify(blogUpdate));
     location.href = '../pages/EditBlog.html'
 }
+// Show Sidebar
+menuBtn.addEventListener("click", () => {
+    sideMenu.style.display = "block";
+  });
+  
+// Hide Sidebar
+ closeBtn.addEventListener("click", () => {
+  sideMenu.style.display = "none";
+  });
 
 previewUpdate = i => {
 
@@ -121,8 +149,27 @@ updateProduct = id => {
 },
 deleteProduct = i => {
     if(confirm('Are you sure you want to delete this product?')){
+
+        var myHeaders = new Headers();
+    myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+    myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+        
+
+        fetch(`http://localhost:5000/server/posts/${data[++i]._id}`, requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log(error.message))
+        .then(()=>location.reload());
+        
+
         // remove the data from the data array
-        data.splice(++i, 1);
+        data.splice(i, 1);
         // update the localStorage
         localStorage.setItem('blogData', JSON.stringify(data));
         // fetch the data again

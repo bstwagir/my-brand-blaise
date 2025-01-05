@@ -49,8 +49,6 @@ const commentsCont = document.querySelector('.comments__container')
 var blogCont = document.querySelector('#singlepost'),
     data = JSON.parse(localStorage.getItem('currentBlog'));
 
-    
-
     function addFeedback(data){
         console.log('hello')
         console.log(blogCont)
@@ -77,28 +75,15 @@ var blogCont = document.querySelector('#singlepost'),
                  </div>
      
              
-             <div style="margin-top: 10%; font-weight: 500; color: blue;"> Leave a Comment</div>
-             <form>
-               <div class="heart__icon center__display">
-                   <div class="like-btn" style= "color:blue"><span class="material-symbols-outlined">
-                     thumb_up
-                     </span></div>
-               </div>
-               <div class="form__info center__display">
-                   
-                   <input type="text" name="comment" id="comment" placeholder="Add a short comment here">
-               </div>
-               <button type="submit" class="submit__btn">
-                   Submit
-               </button>
-           </form>
-           <div class="likes__count">
-               <small class="count">0</small>
-           </div>
+             
          </div>
-         `})}}
+         `
+         blogCont.insertAdjacentElement('beforeend', div)
 
+        })}}
 
+addFeedback(data)
+         
 //likeIcon.addEventListener('click', likeVideo)
 //submitBtn.addEventListener('click', submitFeedback)
 
@@ -163,7 +148,7 @@ function resetForm(){
     positiveFeedback = false
 }
 
-function addFeedback(item){
+/**function addFeedback(item){
     // select first letter of the user name
     const letter = (item.userName).charAt(0)
     // create new div
@@ -196,5 +181,4 @@ function addFeedback(item){
     `
     // insert feedback into the list
     commentsCont.insertAdjacentElement('beforeend', div)
-}
-localStorage.setItem(commentsCont, JSON.stringify("commentsCont"))
+}*/

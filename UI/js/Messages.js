@@ -1,4 +1,27 @@
 // selecting the elements from the DOM
+
+/**var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:5000/server/users", requestOptions)
+  .then(response => response.json())
+  .then(result => {console.log(result), localStorage.setItem('singUData', result)})
+  .catch(error => console.log('error', error)); */
+
+
+var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:5000/server/contactQueries", requestOptions)
+    .then(response => response.text())
+    .then(result => {console.log(result), localStorage.setItem('contactData', result)})
+    .catch(error => console.log('error', error));
+
+
 let data = localStorage.getItem('contactData'),
     form = document.querySelector('form'),
     btnSubmit = document.querySelector('[type="submit"]'),
@@ -13,7 +36,10 @@ let data = localStorage.getItem('contactData'),
     btnClearData = document.querySelector('#btnClearData'),
     dataCount = document.querySelector('#dataCount'),
     search = document.querySelector('#search'),
-    userCount = document.getElementsByClassName("user-count");
+    userCount = document.getElementsByClassName("user-count"),
+    sideMenu = document.querySelector("aside"),
+    menuBtn = document.querySelector("#menu-btn"),
+    closeBtn = document.querySelector("#close-btn");
 
 const saveProduct = () => {
     data = data ?? [];
@@ -60,8 +86,8 @@ fetchProducts = () => {
             // displaying the data in the body of the table
             tbody.innerHTML += `<tr>
                 <td>${++i}</td>
-                <td>${item.lname}</td>
-                <td>${item.fname}</td>
+                <td>${item.createdAt.split('T')[0]}</td>
+                <td>${item.name}</td>
                 <td>${item.email}</td>
                 <td>${item.subject}</td>
                 <td style="width:175px;">${item.message}</td>
@@ -79,7 +105,17 @@ fetchProducts = () => {
                 </tr>
         `;
     }
-},
+};
+
+// Show Sidebar
+menuBtn.addEventListener("click", () => {
+    sideMenu.style.display = "block";
+  });
+  
+// Hide Sidebar
+ closeBtn.addEventListener("click", () => {
+  sideMenu.style.display = "none";
+  });
 previewUpdate = i => {
     // preview the data to be updated in the form
     title.value = data[i].title;
@@ -105,6 +141,24 @@ updateProduct = id => {
 },
 deleteProduct = i => {
     if(confirm('Are you sure you want to delete this product?')){
+
+        var myHeaders = new Headers();
+    myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+    myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+        
+
+        fetch(`http://localhost:5000/server/contactQueries/${data[++i]._id}`, requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log(error.message))
+        .then(()=>location.reload());
+
         // remove the data from the data array
         data.splice(++i, 1);
         // update the localStorage

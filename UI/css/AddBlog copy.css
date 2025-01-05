@@ -352,6 +352,7 @@ main .recent-orders a {
 /* START RIGHT SECTION */
 .right {
   margin-top: 1.4rem;
+  margin-left: 2.4rem;
 }
 .right .top {
   display: flex;
@@ -745,9 +746,9 @@ font-size: 15px;
     box-shadow: 0 1rem 1rem var(--color-light);
   }
   .right .top .theme-toggler {
-    width: 4.4rem;
+    width: 3.3rem;
     position: absolute;
-    left: 66%;
+    left: 76%;
   }
   .right .top .profile .info {
     display: none;

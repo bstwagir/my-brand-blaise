@@ -1,5 +1,17 @@
 // selecting the elements from the DOM
-let data = localStorage.getItem('signupData'),
+
+var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:5000/server/users", requestOptions)
+  .then(response => response.text())
+  .then(result => {console.log(result), localStorage.setItem('signupData', result)})
+  .catch(error => console.log('error', error));
+
+
+let data = JSON.parse(localStorage.getItem('signupData')),
     form = document.querySelector('form'),
     btnSubmit = document.querySelector('[type="submit"]'),
     btnCancel = document.querySelector('[type="button"]'),
@@ -14,6 +26,9 @@ let data = localStorage.getItem('signupData'),
     dataCount = document.querySelector('#dataCount'),
     search = document.querySelector('#search'),
     userCount = document.getElementsByClassName("user-count");
+    const sideMenu = document.querySelector("aside"),
+    menuBtn = document.querySelector("#menu-btn"),
+    closeBtn = document.querySelector("#close-btn");
 
 const saveProduct = () => {
     data = data ?? [];
@@ -31,7 +46,16 @@ const saveProduct = () => {
         alert('Product already exists');
         title.focus();
     }
-},
+};
+// Show Sidebar
+    menuBtn.addEventListener("click", () => {
+    sideMenu.style.display = "block";
+  });
+
+// Hide Sidebar
+ closeBtn.addEventListener("click", () => {
+  sideMenu.style.display = "none";
+  });
 resetForm = () => {
     // resetting the form to its default state using the *FOR...OF method
     form.reset();
@@ -62,7 +86,7 @@ fetchProducts = () => {
                 <td>${++i}</td>
                 <td style="color: black; font-weight: 600;">${item.name}</td>
                 <td style="color: black; font-weight: 600;">${item.email}</td>
-                <td>${parseFloat(item.cp).toFixed(2)}</td>
+                <td>${item.createdAt.split('T')[0]}</td>
                 <td>${parseFloat(item.sp).toFixed(2)}</td>
                 <td style="width: 115px;">
                     <buton type="button" id="btnEditProduc" onclick="previewUpdate(${--i});"></button>
@@ -104,6 +128,24 @@ updateProduct = id => {
 },
 deleteProduct = i => {
     if(confirm('Are you sure you want to delete this product?')){
+
+        var myHeaders = new Headers();
+    myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+    myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+        
+
+        fetch(`http://localhost:5000/server/users/${data[++i]._id}`, requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log(error.message))
+        .then(()=>location.reload());
+
         // remove the data from the data array
         data.splice(++i, 1);
         // update the localStorage

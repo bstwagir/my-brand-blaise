@@ -12,8 +12,11 @@ let data = localStorage.getItem('blogData'),
     tfoot = document.querySelector('tfoot'),
     btnClearData = document.querySelector('#btnClearData'),
     dataCount = document.querySelector('#dataCount'),
-    search = document.querySelector('#search'),
+    categories = document.querySelector('#categories'),
     userCount = document.getElementsByClassName("user-count");
+    const menuBtn = document.querySelector("#menu-btn");
+    const closeBtn = document.querySelector("#close-btn");
+    const sideMenu = document.querySelector("aside");
     let  blogUpdate=[]
 
 /**const saveProduct = () => {
@@ -87,18 +90,18 @@ currentUpdate = i => {
     console.log(data[i]);
     title = data[i].title
     content = data[i].content;
-    category = data[i].category;
+    categories = data[i].categories;
     image = data[i].image;
     id = i;
     
-    blogUpdate.push({title, content, category, image, id});
+    blogUpdate.push({title, content, categories, image, id});
     localStorage.setItem('currentData', JSON.stringify(blogUpdate));
     location.href = '../pages/AddBlog copy.html'
 }
 
 // Preview Image 
 
-function readURL(input) {
+/** function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -116,16 +119,16 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
     return reader;
-}
+}*/
 //let id= JSON.parse(localStorage.getItem('currentData')).[0].i
 previewUpdate = () => {
     data = JSON.parse(localStorage.getItem('currentData'));
     // preview the data to be updated in the form
     title.value = data[0].title;
     content.value = data[0].content;
-    category.value = data[0].category;
-    let imagPreview =  data[0].image ;
-    document.querySelector('#blah').setAttribute('src', imagPreview);
+    categories.value = data[0].categories;
+    image.value =  data[0].image ;
+    //document.querySelector('#blah').setAttribute('src', imagPreview);
     
     
    
@@ -137,32 +140,59 @@ updateProduct = id => {
 
     // updating the values of the data array 
     data[id].title = title.value;
-    data[id].category = category.value;
+    data[id].categories = categories.value;
     data[id].content = content.value;
-    if(localStorage.getItem('image')){
-    data[id].image = localStorage.getItem('image');
-}
+    data[id].image = image.value
+    //if(localStorage.getItem('image')){
+    //data[id].image = localStorage.getItem('image');}
+
+    console.log(data[id]._id)
+
+    var myHeaders = new Headers();
+    myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+    myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: JSON.stringify(data[id]),
+        redirect: 'follow'
+        };
+        
+
+        fetch(`http://localhost:5000/server/posts/${data[id]._id}`, requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log(error.message));
+
     // update the localStorage
-    location.href ="../pages/BlogDashboard.html"
+    //location.href ="../pages/BlogD.html"
     localStorage.setItem('blogData', JSON.stringify(data));
+    document.getElementById('confirm').style.display = 'block';
+    document.getElementById('confirm').style.display = 'block';
     localStorage.removeItem('image')
-    location.href ="../pages/BlogDashboard.html"
+    form.title.value = "";
+    form.content.value = "";
+    form.categories.value = "";
+    form.image.value = "";;
+    
+    //location.href ="../pages/BlogD.html"
 },
 
 updateBlog = () => {
     // preventing the default behaviour of the form
-   // e.preventDefault();
+  // e.preventDefault();
     // saving the data to the localStorage
     console.log('success')
     console.log(data)
     datal = JSON.parse(localStorage.getItem('currentData'));
     data = JSON.parse(localStorage.getItem('blogData'))
     let newTitle = datal[0].title,
-        newCategory = datal[0].category;
+        newCategories = datal[0].categories;
         console.log(newTitle)
         console.log(data[0].title)
         for ( let i = 0; i<data.length; i++){
-            if(data[i].title == newTitle && data[i].category == newCategory){
+            if(data[i].title == newTitle && data[i].categories == newCategories){
                 console.log(i)
                 updateProduct(i)
 
@@ -184,4 +214,13 @@ updateBlog = () => {
 
 // cancel update and reset the form to its default state
 //btnCancel.addEventListener('click', e => resetForm());
+// Show Sidebar
+menuBtn.addEventListener("click", () => {
+    sideMenu.style.display = "block";
+  });
+  
+// Hide Sidebar
+ closeBtn.addEventListener("click", () => {
+  sideMenu.style.display = "none";
+  });
 

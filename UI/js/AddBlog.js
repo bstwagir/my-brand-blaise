@@ -1,4 +1,12 @@
-function readURL(input) {
+
+
+var myHeaders = new Headers();
+    myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+console.log(JSON.parse(localStorage.getItem('current_user')).accessToken, myHeaders);
+const sideMenu = document.querySelector("aside");
+const menuBtn = document.querySelector("#menu-btn");
+const closeBtn = document.querySelector("#close-btn");
+/**function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -14,9 +22,11 @@ function readURL(input) {
         }) 
         
         reader.readAsDataURL(input.files[0]);
+        onchange="readURL(this);"
+        upload.single("image")
     }
     return reader;
-}
+}*/
 function Blog(){
 
     const form = document.getElementById("myForm");
@@ -26,24 +36,55 @@ function Blog(){
           event.preventDefault();
           const formValues = {
               title: form.title.value,
-              category: form.category.value,
+              categories: form.categories.value,
               content: form.content.value,
-              image: localStorage.getItem('image'),
+              image: form.image.value,             
           };
-          if(formValues.title && formValues.category && formValues.content){
+
+          serverPost= () =>{ var myHeaders = new Headers();
+            myHeaders.append("authorization", JSON.parse(localStorage.getItem('current_user')).accessToken);
+            myHeaders.append("Content-Type", "application/json");
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: JSON.stringify(formValues),
+          redirect: 'follow'
+        };
+        
+        fetch("http://localhost:5000/server/posts", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));}
+
+
+          if(formValues.title && formValues.categories && formValues.content){
               blogData.push(formValues);
-              console.log('blogData')
               if (blogData.length > 0) {
+                serverPost()
                 localStorage.setItem(storageKey, JSON.stringify(blogData));
                 document.getElementById('confirm').style.display = 'block';
                 localStorage.removeItem('image');
               }} 
           form.title.value = "";
           form.content.value = "";
-          form.category.value = "";
-          form.subject.value = "";
-          form.message.value = "";
-          localStorage.removeItem('image');
+          form.categories.value = "";
+          form.image.value = "";;
       });
-      console.log('contactData')
+      console.log(blogData)
     }
+
+// Show Sidebar
+menuBtn.addEventListener("click", () => {
+    sideMenu.style.display = "block";
+  });
+  
+// Hide Sidebar
+ closeBtn.addEventListener("click", () => {
+  sideMenu.style.display = "none";
+  });
+
+   /**  title: form.title.value,
+              categories: form.categories.value,
+              content: form.content.value,
+              image: localStorage.getItem('image'),*/

@@ -73,15 +73,15 @@
               <div class="">
                   <div class="nav-blog">
                       <textarea class="input-blog" type='name' id="title" placeholder='Title' required></textarea>
-                      <textarea class="input2" type='name' id="category" placeholder='Category' required></textarea>
+                      <textarea class="input2" type='name' id="categories" placeholder='Category' required></textarea>
                   </div>
                   <textarea class="input3" type='text' id="content" placeholder='Write your Article Here' required></textarea>
                </div>
-               <input class="import-blog" type="file" value="upload" onchange="readURL(this);" ><img id="blah" src="" alt="" style="max-height: 75px; max-width: 75px; margin: 0 auto;" />
-               <div id="confirm" style ="color:rgb(8, 221, 8); font-size: 20px; margin-left: 5%; display:none"><span class="material-symbols-outlined">
+               <input class="import-blog" type="text" id="image" value="upload" onchange="readURL(this);" ><img id="blah" src="" alt="" style="max-height: 75px; max-width: 75px; margin: 0 auto;" />
+               <div id="confirm" style ="color:rgb(3, 3, 3); font-size: 20px; margin-left: 5%; display:none"><span class="material-symbols-outlined">
                 check_circle
-                </span> Blog Published</div>
-               <span><button class="button-cv" style ="background-color:rgb(8, 221, 8)" type="" value="submit" onclick="updateBlog()" >Update</button></span>
+                </span> Blog Edited</div>
+               <span><button class="button-cv" style ="background-color:rgb(8, 221, 8)" type="button" value="submit" onclick="updateBlog()" >Update</button></span>
               </form>
            </div>
           </div>

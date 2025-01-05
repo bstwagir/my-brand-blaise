@@ -1,18 +1,48 @@
 
     
 function Login() {
-    let email = document.getElementById('email').value, pwd = document.getElementById('psw').value;
-    let formData = JSON.parse(localStorage.getItem('signupData')) || [];
+    let email = document.getElementById('email').value, password = document.getElementById('password').value;
+    /**let formData = JSON.parse(localStorage.getItem('signupData')) || [];
     let exist = formData.length && 
-    JSON.parse(localStorage.getItem('signupData')).some(data => data.email.toLowerCase() === email && data.pwd.toLowerCase() === pwd);
+    JSON.parse(localStorage.getItem('signupData')).some(data => data.email.toLowerCase() === email && data.password.toLowerCase() === password);
     if(!exist){
         alert("Incorrect login credentials");
     }
-    else{
-        location.href = "./Dashboard.html";
+    else{*/
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        const data = {
+            email: email,
+            password: password,
+        };
+    
+    
+        requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(data),
+            redirect: "follow",
+        };
+    
+        console.log(data, email.value);
+        fetch("http://localhost:5000/server/auth/login", requestOptions)
+            .then((response) => response.json())
+            .then((result) => { console.log(result), localStorage.setItem('current_user', JSON.stringify(result))})
+            .catch((error) => console.log("error", error));
+
+            let result;
+            setTimeout(function (){ result = JSON.parse(localStorage.getItem('current_user'))},1000)
+
+            setTimeout(function (){  if (result.others.isAdmin){location.href = "./Dashboard.html"}
+        else if(current_user){
+            location.href = "./Blog.html";
+            document.querySelector(".button").innerHTML = result.others.name
+
+        }},1000)
+        
     }
-    event.preventDefault();
-}
+
 /**
 function Login()
 {
